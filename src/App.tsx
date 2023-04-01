@@ -1,31 +1,30 @@
-import React from 'react';
-import './App.css';
-import { Header } from './header/header';
-import { Footer } from './footer/footer';
-import { Main } from './main/main';
-import { ShowPeople } from './showPeople/showPeople';
+import React from "react";
+import "./App.css";
+import { Header } from "./header/header";
+import { Footer } from "./footer/footer";
+import { Main } from "./main/main";
+import { ShowPeople } from "./showPeople/showPeople";
+import { Console } from "console";
 
 function App() {
+  //MouseEvent<HTMLButtonElement>
+  const fun1 = () => {
+    return console.log("hello my friends!!!");
+  }; //hello my friends!!!
 
-  const listPeopleInfo = [
-    { naming: "Vlad", age: 28, country: "Bel" },
-    { naming: "Ciril", age: 29, country: "Bel" },
-    { naming: "Oleg", age: 20, country: "RUS" },
-    { naming: "Dmitry", age: 18, country: "Bel" },
-    { naming: "Alex", age: 25, country: "RUS" },
-    { naming: "Vova", age: 36, country: "Bel" },
-    { naming: "Andrea", age: 65, country: "UKR" },
-    { naming: "Ulia", age: 12, country: "Bel" },
-    { naming: "Mark", age: 18, country: "KZX" },
-  ];
+  const fun2 = (name: string) => {
+    return console.log("hello my friends!!!" + " " + name);
+  }; //hello my friends!!! vlad
 
   return (
     <>
-      <Header titleHeader={"Hello my friends"} />
-      <Main titleMain={"I am from Belarus"} />
-      <Footer titleFooter={"My name is Vlad"} />
-      <ShowPeople people = {listPeopleInfo} />
+      <button onClick={() => console.log("hello")}>X1</button>
+      <button onClick={(event) => console.log("hello")}>X2</button>
+      <button onClick={fun1}>X3</button>
+      <button onClick={() => fun2("vlad")}>X3</button>
     </>
   );
+  //not use without () =>
+  //<button onClick={fun2("vlad")}>X3</button> / error
 }
 export default App;
