@@ -1,22 +1,45 @@
 import React, { useState } from "react";
 import "./App.css";
+import useBreakpoint from "antd/lib/grid/hooks/useBreakpoint";
+import { type } from "os";
+import { Components } from "./components/components";
+
+
+ //type filter
+  export type FilterType =  "all" | "Dollars" | "RUBLS";
 
 function App() {
-  let [i,setI] = useState(1)
+  let [money, setMoney] = useState([
+    { banknots: "Dollars", value: 100, number: " a1234567890" },
+    { banknots: "Dollars", value: 50, number: " z1234567890" },
+    { banknots: "RUBLS", value: 100, number: " w1234567890" },
+    { banknots: "Dollars", value: 100, number: " e1234567890" },
+    { banknots: "Dollars", value: 50, number: " c1234567890" },
+    { banknots: "RUBLS", value: 100, number: " r1234567890" },
+    { banknots: "Dollars", value: 50, number: " x1234567890" },
+    { banknots: "RUBLS", value: 50, number: " v1234567890" },
+  ]);
 
-  const plusvalue = () => {
-    setI(++i)
-  }
 
-  const nullvalue = () => {
-    setI(0)
-  }
+  //copy money in new varibals
+  let newMoney = money;
+
+  //create new useState for function calcBuncConv then return new filter
+  let [filter, setfilter] = useState<FilterType>("all");
+  const calcBuncConv = (name: FilterType) => {
+    setfilter(name);
+  };
+
+  //if filter  then return ...
+  if (filter === "all") newMoney = money;
+  if (filter === "Dollars")
+    newMoney = money.filter((el) => el.banknots === "Dollars");
+  if (filter === "RUBLS")
+    newMoney = money.filter((el) => el.banknots === "RUBLS");
 
   return (
     <>
-      <h1>{i}</h1>
-      <button onClick={plusvalue}>+</button>
-      <button onClick={nullvalue}>0</button>
+      <Components showinfo={newMoney} fun={calcBuncConv} />
     </>
   );
 }
