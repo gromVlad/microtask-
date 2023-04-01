@@ -1,16 +1,22 @@
-import React from "react";
+import React, { useState } from "react";
 import "./App.css";
-import { Button } from "./button/button";
 
 function App() {
-  const fun1 = (name: string, age: number) => {
-    console.log(name + " " + age);
-  };
+  let [i,setI] = useState(1)
+
+  const plusvalue = () => {
+    setI(++i)
+  }
+
+  const nullvalue = () => {
+    setI(0)
+  }
 
   return (
     <>
-      <Button name={"one"} logic={() => fun1("cat", 5)} />
-      <Button name={"two"} logic={() => fun1("dog", 6)} />
+      <h1>{i}</h1>
+      <button onClick={plusvalue}>+</button>
+      <button onClick={nullvalue}>0</button>
     </>
   );
 }
