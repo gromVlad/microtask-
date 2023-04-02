@@ -7,6 +7,7 @@ type ComponentsType = {
 }
 
 export const Components = (props: ComponentsType) => {
+  //local state for input
   let [title, settitle] = useState("");
 
   //event. target – самый глубокий элемент, на котором произошло событие. event. currentTarget (= this ) – элемент, на котором в данный момент сработал обработчик (до которого «доплыло» событие)
@@ -14,10 +15,14 @@ export const Components = (props: ComponentsType) => {
     settitle(event.currentTarget.value);
   };
 
+  //add in value in input 
   return (
     <>
-      <input onChange={funTargetInput} />
-      <button onClick={() => props.fun(title)}>+</button>
+      <input value = {title} onChange={funTargetInput} />
+      <button onClick={() => {
+        props.fun(title)
+        settitle("")
+        }}>+</button>
     </>
   );
 };

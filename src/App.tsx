@@ -16,7 +16,8 @@ function App() {
   ])
 
   const funProm = (value:string) =>{
-    console.log(value);
+    let newMes = {message:value}
+    setMessage([newMes,...message])
   }
 
   return (
