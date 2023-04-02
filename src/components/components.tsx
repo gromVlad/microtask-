@@ -1,33 +1,24 @@
-import { type } from "os";
-import { FilterType } from "../App";
+import { type} from "os";
+//import ChangeEvent, useState
+import React, {ChangeEvent, useState } from "react";
 
-
-type Object = {
-  banknots:string,
-  value:number,
-  number: string
+type ComponentsType = {
+  fun:(value:string) => void
 }
 
-type CompType = {
-  showinfo: Object[];
-  fun: (name: FilterType) => void;
-};
+export const Components = (props: ComponentsType) => {
+  let [title, settitle] = useState("");
 
-export const Components = (props: CompType) => {
-  
+  //event. target – самый глубокий элемент, на котором произошло событие. event. currentTarget (= this ) – элемент, на котором в данный момент сработал обработчик (до которого «доплыло» событие)
+  const funTargetInput = (event: ChangeEvent<HTMLInputElement>) => {
+    settitle(event.currentTarget.value);
+  };
+
   return (
     <>
-      {props.showinfo.map((el) => {
-        return (
-          <div>
-            {" "}
-            Money: {el.banknots} / Value: {el.value} / Number: {el.number}
-          </div>
-        );
-      })}
-      <button onClick={() => props.fun("all")}>All</button>
-      <button onClick={() => props.fun("RUBLS")}>RUBLS</button>
-      <button onClick={() => props.fun("Dollars")}>Dollars</button>
+      <input onChange={funTargetInput} />
+      <button onClick={() => props.fun(title)}>+</button>
     </>
   );
 };
+
