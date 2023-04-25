@@ -9,7 +9,6 @@ export default {
 
 const Template: Story<HeadType> = (args) => <Head {...args} />;
 
-
 //one test
 export const Primary = Template.bind({});
 Primary.args = {
